@@ -6,6 +6,7 @@ with open(sys.argv[1], 'r') as file:
     schedules = file.readlines()
 
     week_sched = {}
+    pairs = {}
 
     for line in schedules:
         emp = line.split('=')
@@ -18,8 +19,6 @@ with open(sys.argv[1], 'r') as file:
                 key = emp[0] + day
                 week_sched[key]={'name' : emp[0], 'day': day, 'time_in': time_in, 'time_out': time_out}
 
-    pairs = {}
-
     for i in week_sched:
         for j in week_sched:
             if not week_sched[i]['name'] == week_sched[j]['name'] and week_sched[i]['day'] == week_sched[j]['day']:
@@ -31,9 +30,9 @@ with open(sys.argv[1], 'r') as file:
                     else:
                         pairs.update({week_sched[i]['name']+'-'+week_sched[j]['name']: 1})
 
-    pairs = {k:v//2 for (k,v) in pairs.items()}
-
-    print(pairs)
+    pairs = {k:v // 2 for (k,v) in pairs.items()}
+    
+    print(week_sched)
 
 
 
