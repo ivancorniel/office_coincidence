@@ -114,4 +114,5 @@ with open(sys.argv[1], 'r') as file:
             key = schedule(sched[0], day, time_in, time_out)
 
 
-schedule.find_coincidence()
+if __name__ == '__main__':
+    schedule.find_coincidence()

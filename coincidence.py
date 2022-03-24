@@ -31,9 +31,12 @@ with open(sys.argv[1], 'r') as file:
                         pairs.update({week_sched[i]['name']+'-'+week_sched[j]['name']: 1})
 
     pairs = {k:v // 2 for (k,v) in pairs.items()}
-    
-    for i in pairs:
-        print(i, ':', pairs[i])
+
+
+if __name__ == '__main__':
+    for k in pairs:
+        print(k, ':', pairs[k])
+ 
 
 
 
