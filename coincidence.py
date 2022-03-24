@@ -22,7 +22,7 @@ with open(sys.argv[1], 'r') as file:
     for i in week_sched:
         for j in week_sched:
             if not week_sched[i]['name'] == week_sched[j]['name'] and week_sched[i]['day'] == week_sched[j]['day']:
-                if week_sched[i]['time_in'] <= week_sched[j]['time_out'] and week_sched[i]['time_out'] >= week_sched[j]['time_in']:
+                if week_sched[i]['time_in'] <= week_sched[j]['time_out'] or week_sched[i]['time_out'] >= week_sched[j]['time_in']:
                     if week_sched[i]['name'] + '-' + week_sched[j]['name'] in pairs:        
                         pairs[week_sched[i]['name'] + '-' + week_sched[j]['name']] += 1
                     elif week_sched[j]['name'] + '-' + week_sched[i]['name'] in pairs: 
@@ -32,7 +32,8 @@ with open(sys.argv[1], 'r') as file:
 
     pairs = {k:v // 2 for (k,v) in pairs.items()}
     
-    print(week_sched)
+    for i in pairs:
+        print(i, ':', pairs[i])
 
 
 
