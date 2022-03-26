@@ -27,11 +27,11 @@ In this solution i used a Object Oriented Programming approche.
 
 ### Design and Architecture 
 
-with this approche i focused more on the schedules themselves and the coincidences. i created a class which contains the data needed to compare each  employee schedule.
+With this solution i focused more on the schedules themselves and their coincidences. I created a class which contains the data needed to compare each worked schedule.
 
-After reading and converting the data coming from the .txt file, created an instance of the Schedule class.
+After reading and converting the data coming from the .txt file into the appropiate type (string and datetime), an instance of the Schedule class is created. At it's creation and instance method compares to all instances already created and if schedules coincide to another, it is added to coincidence python dictionary.
 
-A class method is called in which each schedule worked by the employees is categorized by day and then compared to the rest already in that day's list.
+A class level method is called in which each in which coincidences are printed. 
 
 pairs to be returned are stored using a python dictionary.
 
