@@ -1,7 +1,3 @@
-import sys
-from datetime import datetime
-
-
 class Schedule:
 
     instances = []
