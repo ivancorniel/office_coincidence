@@ -24,8 +24,7 @@ class Schedule:
 
     @classmethod
     def get_coincidences(cls):
-        for i in cls.coincidences:
-            print(i, cls.coincidences[i])                
+        return cls.coincidences
 
     def __repr__(self) -> str:
         return self.worker + ' ' + str(self.time_in) + ' ' + str(self.time_out)

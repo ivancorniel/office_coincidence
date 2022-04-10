@@ -14,10 +14,12 @@ def main():
                 day = i[:2]
                 time_in = datetime.strptime(i[2:7], '%H:%M').time()
                 time_out = datetime.strptime(i[8:13], '%H:%M').time()
-                key = sched[0] + day
-                key = Schedule(sched[0], day, time_in, time_out)
+                Schedule(sched[0], day, time_in, time_out)
     
-    Schedule.get_coincidences()
+    results = Schedule.get_coincidences()
+
+    for i in results:
+        print(i, results[i])
 
 
 if __name__ == '__main__':
