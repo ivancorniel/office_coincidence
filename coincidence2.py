@@ -1,9 +1,14 @@
+from datetime import datetime
+import csv
+from abc import ABC, abstractmethod
+
+
 class Schedule:
 
     instances = []
     coincidences = {}
 
-    def __init__(self, worker, day, time_in, time_out):
+    def __init__(self, worker: str, day: str, time_in: str, time_out: str)-> None:
         self.worker = worker
         self.day = day
         self.time_in = time_in
@@ -26,7 +31,46 @@ class Schedule:
     def get_coincidences(cls):
         return cls.coincidences
 
-    def __repr__(self) -> str:
-        return self.worker + ' ' + str(self.time_in) + ' ' + str(self.time_out)
+
+class Intake(ABC):
+
+    @abstractmethod
+    def process_input(self, data: str) -> None:
+        pass
+
+
+class TXTFileInput(Intake):
+    
+    def process_input(self, data: str) -> None:
+        with open(data, 'r') as file:
+            schedules = file.readlines()
+
+            for line in schedules:
+                sched = line.split('=')
+                sched[1] = sched[1].split(',')
+                for i in sched[1]:
+                    day = i[:2]
+                    time_in = datetime.strptime(i[2:7], '%H:%M').time()
+                    time_out = datetime.strptime(i[8:13], '%H:%M').time()
+                    Schedule(sched[0], day, time_in, time_out)
+
+
+class CSVFileInput(Intake):
+    
+    def process_input(self, data: str) -> None:
+        with open(data, 'r') as file:
+            schedules = csv.DictReader(file)
+
+            for line in schedules:
+                name = line['name']
+                day = line['day']
+                time_in = line['time in']
+                time_out = line['time out']
+                Schedule(name, day, time_in, time_out)
+
+
+
+        
+
 
 
